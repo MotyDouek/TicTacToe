@@ -17,6 +17,23 @@ const winningMessageTextElement = document.querySelector('[data-winning-message-
 const restartButton = document.getElementById('restartButton');
 let circleTurn;
 
+// using the info from the form
+let playersNames = [];
+new URLSearchParams(window.location.search).forEach((value, name) => {
+    playersNames.push(`${value}`);
+})
+
+//players settings
+let scoreArr = [0, 0];
+
+const palyerA = document.getElementById('name-0');
+const palyerB = document.getElementById('name-1');
+const scoreA = document.getElementById('score-0');
+const scoreB = document.getElementById('score-1');
+
+palyerA.innerText = playersNames[0];
+palyerB.innerText = playersNames[1];
+
 startGame();
 
 restartButton.addEventListener('click', startGame);
@@ -31,6 +48,8 @@ function startGame() {
     })
     setBoardHoverClass();
     winningMessageElement.classList.remove('show');
+    scoreA.innerText = 'Score: ' + scoreArr[0];
+    scoreB.innerText = 'Score: ' + scoreArr[1];
 }
 
 function handleClick(e) {
@@ -55,6 +74,7 @@ function endGame(draw) {
     if (draw) {
         winningMessageTextElement.innerText = 'Draw!';
     } else {
+        scoreArr[circleTurn ? 1 : 0]++;
         winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`;
     }
     winningMessageElement.classList.add('show');
@@ -91,4 +111,8 @@ function checkWin(currentClass) {
             return cellElements[index].classList.contains(currentClass);
         })
     })
+}
+
+function stepBack() {
+
 }
