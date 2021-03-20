@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="gameStyles.css">
+    <script src="gameScript.js" defer></script>
+</head>
+
+<body>
+
+    <div class="formWrapper">
+        <table>
+            <tr>
+                <td></td>
+                <td>
+                    <h1>Tic Tac Toe</h1>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td scope="player">
+                    <div class="playerA-panel">
+                        <div class="player-name" id="name-0">Player 1</div>
+                        <div class="player-score" id="score-0">43</div>
+                    </div>
+                </td>
+                <td scope="board">
+                    <div class="board" id="board">
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                    </div>
+                </td>
+                <td scope="player">
+                    <div class="playerB-panel">
+                        <div class="player-name" id="name-1">Player 2</div>
+                        <div class="player-score" id="score-1">62</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" value="Save" scope="button">
+                    <input type="button" value="Go Back" scope="button">
+                    <input type="button" value="Settings" scope="button">
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="index.html">Back to form</a>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="winning-message" id="winningMessage">
+            <div data-winning-message-text></div>
+            <button id="restartButton">Restart</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
