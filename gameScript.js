@@ -17,6 +17,7 @@ const winningMessageTextElement = document.querySelector('[data-winning-message-
 const restartButton = document.getElementById('restartButton');
 let circleTurn;
 let playerAIsX = true;
+let movesArr = [];
 
 // using the info from the form
 let playersNames = [];
@@ -98,12 +99,14 @@ function isDraw() {
 
 function placeMark(cell, currentClass) {
     cell.classList.add(currentClass);
+    movesArr.push([currentClass, cellIndex(cell)]);
 }
 
 function swapturns() {
     circleTurn = !circleTurn;
 }
 
+//adds x/o to selectes cell
 function setBoardHoverClass() {
     board.classList.remove(X_CLASS);
     board.classList.remove(CIRCLE_CLASS);
@@ -123,10 +126,7 @@ function checkWin(currentClass) {
     })
 }
 
-function stepBack() {
-
-}
-
+//switch bettwen the players
 function switchXnO() {
     if (playerAIsX) { //player A was x
         playerACell.classList.remove(X_CLASS);
@@ -141,4 +141,28 @@ function switchXnO() {
     }
 
     playerAIsX = !playerAIsX;
+}
+
+//returns the currect cell index
+function cellIndex(cell) {
+    for (let i = 0; i < 9; i++) {
+        if (cellElements[i] == cell) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//undo the last move
+function undoStep() {
+    if (movesArr[movesArr.length - 1][0] == X_CLASS) { //last move was X`s
+        cellElements[movesArr[movesArr.length - 1][1]].classList.remove(X_CLASS);
+    } else { //last move was O`s
+        cellElements[movesArr[movesArr.length - 1][1]].classList.remove(CIRCLE_CLASS);
+    }
+    cellElements[movesArr[movesArr.length - 1][1]].addEventListener('click', handleClick, { once: true });
+
+    movesArr.pop(movesArr.length - 1);
+    swapturns();
+    setBoardHoverClass();
 }
