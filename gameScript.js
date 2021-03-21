@@ -16,6 +16,7 @@ const winningMessageElement = document.getElementById('winningMessage');
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]');
 const restartButton = document.getElementById('restartButton');
 let circleTurn;
+let playerAIsX = true;
 
 // using the info from the form
 let playersNames = [];
@@ -33,6 +34,10 @@ const scoreB = document.getElementById('score-1');
 
 palyerA.innerText = playersNames[0];
 palyerB.innerText = playersNames[1];
+
+//cell that shows if the player is playing on the X`s or O`s
+const playerACell = document.getElementById('playerA-cell');
+const playerBCell = document.getElementById('playerB-cell');
 
 startGame();
 
@@ -73,9 +78,14 @@ function handleClick(e) {
 function endGame(draw) {
     if (draw) {
         winningMessageTextElement.innerText = 'Draw!';
-    } else {
-        scoreArr[circleTurn ? 1 : 0]++;
+    } else { //we have a winner
+        if (playerAIsX) { //player A  is x
+            scoreArr[circleTurn ? 1 : 0]++;
+        } else { //player B is x
+            scoreArr[circleTurn ? 0 : 1]++;
+        }
         winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`;
+        switchXnO();
     }
     winningMessageElement.classList.add('show');
 }
@@ -115,4 +125,20 @@ function checkWin(currentClass) {
 
 function stepBack() {
 
+}
+
+function switchXnO() {
+    if (playerAIsX) { //player A was x
+        playerACell.classList.remove(X_CLASS);
+        playerBCell.classList.remove(CIRCLE_CLASS);
+        playerACell.classList.add(CIRCLE_CLASS);
+        playerBCell.classList.add(X_CLASS);
+    } else { //player B was x 
+        playerBCell.classList.remove(X_CLASS);
+        playerACell.classList.remove(CIRCLE_CLASS);
+        playerBCell.classList.add(CIRCLE_CLASS);
+        playerACell.classList.add(X_CLASS);
+    }
+
+    playerAIsX = !playerAIsX;
 }

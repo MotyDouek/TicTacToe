@@ -18,9 +18,10 @@
             </tr>
             <tr>
                 <td scope="player">
-                    <div class="playerA-panel">
+                    <div class="playerAPanel">
                         <div class="player-name" id="name-0">Player A</div>
                         <div class="player-score" id="score-0">43</div>
+                        <div class="cell x con" id="playerA-cell"></div>
                     </div>
                 </td>
                 <td scope="board">
@@ -37,9 +38,10 @@
                     </div>
                 </td>
                 <td scope="player">
-                    <div class="playerB-panel">
+                    <div class="playerBPanel">
                         <div class="player-name" id="name-1">Player B</div>
                         <div class="player-score" id="score-1">62</div>
+                        <div class="cell circle con" id="playerB-cell"></div>
                     </div>
                 </td>
             </tr>
@@ -47,7 +49,7 @@
                 <td></td>
                 <td>
                     <input type="button" value="Save" scope="button" />
-                    <input type="button" value="Go Back" scope="button" onclick="stepBack" />
+                    <input type="button" value="Undo" scope="button" onclick="stepBack" />
                     <input type="button" value="Settings" scope="button" onClick="location.href='index.html'" />
                 </td>
                 <td></td>

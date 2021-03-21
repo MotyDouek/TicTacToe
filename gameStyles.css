@@ -88,6 +88,10 @@ td[scope="player"] {
     border-bottom: none;
 }
 
+.con {
+    border-left: none;
+}
+
 .cell.x,
 .cell.circle {
     cursor: not-allowed;
@@ -196,3 +200,4 @@ td[scope="player"] {
     color: white;
     border-color: black;
 }
+
