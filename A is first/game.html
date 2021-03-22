@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="gameStyles.css">
+    <script src="gameScript.js" defer></script>
+</head>
+
+<body>
+
+    <div class="formWrapper">
+        <table>
+            <tr>
+                <td></td>
+                <td>
+                    <h1>Tic Tac Toe</h1>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td scope="player">
+                    <div class="playerAPanel">
+                        <div class="player-name" id="name-0">Player A</div>
+                        <div class="player-score" id="score-0">43</div>
+                        <div class="cell x con" id="playerA-cell"></div>
+                    </div>
+                </td>
+                <td scope="board">
+                    <div class="board" id="board">
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                        <div class="cell" data-cell></div>
+                    </div>
+                </td>
+                <td scope="player">
+                    <div class="playerBPanel">
+                        <div class="player-name" id="name-1">Player B</div>
+                        <div class="player-score" id="score-1">62</div>
+                        <div class="cell circle con" id="playerB-cell"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" value="Save" scope="button" onclick="saveLocalstorage()" />
+                    <input type="button" value="LoadSave" scope="button" onclick="loadLocalstorage()" />
+                    <input type="button" value="Undo" scope="button" onclick="undoStep()" />
+                    <input type="button" value="Settings" scope="button" onClick="location.href='index.html'" />
+                </td>
+                <td></td>
+            </tr>
+            <tr></tr>
+        </table>
+        <div class="winning-message" id="winningMessage">
+            <div data-winning-message-text></div>
+            <button id="restartButton">Restart</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

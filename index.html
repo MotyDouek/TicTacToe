@@ -11,14 +11,41 @@
         <h1>Settings</h1>
         <form action="game.html" method="GET">
             <div class="innerForm">
-                Player A <input type="text" placeholder="Enter name" name="Player A" />
-                <br /><br />
-                Player B <input type="text" placeholder="Enter name" name="Player B" />
-                <br /><br /><br />
-                <input type="submit" value="START" scope="button">
+                <table>
+                    <tr>
+                        <td>
+                            Player A <input type="text" placeholder="Enter name" name="Player A" id="playerA" />
+                        </td>
+                        <td>
+                            Player B <input type="text" placeholder="Enter name" name="Player B" id="playerB" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="Images/dice/dice-1.png" alt="Dice" class="dice" id="dice-0">
+                        </td>
+                        <td>
+                            <img src="Images/dice/dice-1.png" alt="Dice" class="dice" id="dice-1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="Roll Dice" scope="button" id="btn-0" onclick="diceRoll0()">
+                        </td>
+                        <td>
+                            <input type="button" value="Roll Dice" scope="button" id="btn-1" onclick="diceRoll1()">
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <div class="msg" id="results-msg">
+                    Please roll your dices in order to determine who will start.
+                </div>
+                <input type="submit" value="START" scope="button" id="btn-submit" style="visibility: hidden;">
             </div>
         </form>
     </div>
+    <input type="text" id="temp" style="visibility: hidden;" />
 
 </body>
 
