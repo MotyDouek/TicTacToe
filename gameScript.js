@@ -46,16 +46,13 @@ restartButton.addEventListener('click', startGame);
 
 function startGame() {
     circleTurn = false;
-    cellElements.forEach(cell => {
-        cell.classList.remove(X_CLASS);
-        cell.classList.remove(CIRCLE_CLASS);
-        cell.removeEventListener('click', handleClick);
-        cell.addEventListener('click', handleClick, { once: true }) //will fire the event only once
-    })
+    clearBoard();
     setBoardHoverClass();
     winningMessageElement.classList.remove('show');
     scoreA.innerText = 'Score: ' + scoreArr[0];
     scoreB.innerText = 'Score: ' + scoreArr[1];
+
+    clearArr(movesArr);
 }
 
 function handleClick(e) {
@@ -165,4 +162,87 @@ function undoStep() {
     movesArr.pop(movesArr.length - 1);
     swapturns();
     setBoardHoverClass();
+}
+
+function clearArr(arr) {
+    for (let i = arr.length - 1; i >= 0; i--) {
+        arr.pop(arr.length - 1);
+    }
+}
+
+function saveLocalstorage() {
+    localStorage.setItem('playerA name', playersNames[0]);
+    localStorage.setItem('playerB name', playersNames[1]);
+
+    localStorage.setItem('playerA score', scoreArr[0]);
+    localStorage.setItem('playerB score', scoreArr[1]);
+
+    localStorage.setItem('is it the circle turn', circleTurn);
+    localStorage.setItem('is player A playing the X`s', playerAIsX);
+
+    localStorage.setItem('list of moves', movesArr);
+}
+
+function loadLocalstorage() {
+    palyerA.innerText = localStorage.getItem('playerA name');
+    palyerB.innerText = localStorage.getItem('playerB name');
+
+    scoreArr[0] = parseInt(localStorage.getItem('playerA score'), 10);
+    scoreArr[1] = parseInt(localStorage.getItem('playerB score'), 10);
+    scoreA.innerText = 'Score: ' + scoreArr[0];
+    scoreB.innerText = 'Score: ' + scoreArr[1];
+
+    circleTurn = localStorage.getItem('is it the circle turn') == 'true' ? true : false;
+    let savedPlayerAisX = (localStorage.getItem('is player A playing the X`s') == 'true');
+    if (savedPlayerAisX != playerAIsX) {
+        switchXnO();
+    }
+
+    let tempArr = (localStorage.getItem('list of moves')).split(',');
+    for (let i = 0; i < tempArr.length; i++) {
+        if (i % 2 != 0) {
+            tempArr[i] = parseInt(tempArr[i], 10);
+        }
+    }
+    console.log(tempArr);
+
+    clearBoard();
+    loadXnO(tempArr);
+
+    console.log(movesArr);
+
+    setBoardHoverClass();
+}
+
+function clearBoard() {
+    cellElements.forEach(cell => {
+        cell.classList.remove(X_CLASS);
+        cell.classList.remove(CIRCLE_CLASS);
+        cell.removeEventListener('click', handleClick);
+        cell.addEventListener('click', handleClick, { once: true }) //will fire the event only once
+    })
+}
+
+function loadXnO(arr) {
+    let x = true;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (i % 2 != 0) {
+            if (x) { //X`s cell
+                cellElements[i].classList.add(X_CLASS);
+            } else { //O`s cell
+                cellElements[i].classList.add(CIRCLE_CLASS);
+            }
+            x = !x;
+        }
+    }
+
+    clearArr(movesArr);
+    let XClass = true;
+    for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === 'string' || arr[i] instanceof String) {
+            movesArr.push([XClass ? X_CLASS : CIRCLE_CLASS, arr[i + 1]]);
+            XClass = !XClass;
+        }
+    }
 }
